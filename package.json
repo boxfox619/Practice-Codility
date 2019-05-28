@@ -1,0 +1,17 @@
+{
+  "name": "practice-codility",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "jest"
+  },
+  "homepage": "https://github.com/boxfox619/Practice-Codility#readme",
+  "devDependencies": {
+    "jest": "^24.8.0"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ]
+  }
+}
