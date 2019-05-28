@@ -1,8 +1,8 @@
+// you can write to stdout for debugging purposes, e.g.
+// console.log('this is a debug message');
+
 function solution(X, Y, D) {
-  const range = Y - X;
-  let jump = (range / D) | 0;
-  if(range % D > 0){
-    jump +=1;
-  }
-  return jump;
+    const distance = Y - X;
+    let jump = Math.ceil(distance / D);
+    return jump ;
 }
