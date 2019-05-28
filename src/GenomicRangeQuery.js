@@ -1,32 +1,30 @@
-const TYPES = {
-  'A': 1,
-  'C': 2,
-  'G': 3,
-  'T': 4
+// you can write to stdout for debugging purposes, e.g.
+// console.log('this is a debug message');
+
+const DNA_MAP = {
+  A: 1,
+  C: 2,
+  G: 3,
+  T: 4
 }
 
 function solution(S, P, Q) {
-  const N = S.length;
-  const words = S.split('');
-  const typeCount = {A: 0, C: 0, G: 0, T:0};
-  const valueMap = [];
-  valueMap.push({...typeCount});
-  words.forEach((w) => {
-    typeCount[w] += 1;
-  valueMap.push({...typeCount});
-});
-
-  const M = P.length;
-  const results = [];
-  for(let i = 0; i < M; i++){
-    const start = P[i];
-    const end = Q[i];
-    for(let type in TYPES){
-      if(valueMap[end+1][type] - valueMap[start][type] > 0){
-        results.push(TYPES[type]);
-        break;
+  const typeCount = { A: 0, C: 0, G: 0, T: 0 };
+  const typeCountList = [{ ...typeCount }];
+  S.split('').forEach(type => {
+      typeCount[type] += 1;
+      typeCountList.push({ ...typeCount });
+  })
+  const result = [];
+  for (let i = 0; i < P.length; i++) {
+      const start = P[i];
+      const end = Q[i];
+      for (const type in DNA_MAP) {
+          if (typeCountList[end + 1][type] - typeCountList[start][type] > 0) {
+              result.push(DNA_MAP[type]);
+              break;
+          }
       }
-    }
   }
-  return results;
+  return result;
 }
