@@ -2,27 +2,26 @@
 // process.stderr.write('this is a debug message');
 
 function solution(A, K) {
-    const maxLength = A.map(val => val.toString()).reduce((max, val) => (max > val.length) ? max : val.length, 0);
+    const values = A.map(val => val.toString());
+    const maxLength = values.reduce((max, val) => (max > val.length) ? max : val.length, 0);
     const maxPerLine = (A.length > K) ? K : A.length;
     printLine(maxPerLine, maxLength);
     do {
-        const values = A.splice(0, maxPerLine);
-        printData(values, maxLength);
-        printLine(values.length, maxLength);
-    } while(A.length > 0);
+        const spliced = values.splice(0, maxPerLine);
+        printData(spliced, maxLength);
+        printLine(spliced.length, maxLength);
+    } while(values.length > 0);
 }
 
 function printData(values, maxLength) {
     values.forEach(val => {
-        const spaceCount = maxLength - val.toString().length;
-        const line = `|${' '.repeat(spaceCount)}${val}`;
-        process.stdout.write(line);
+        const spaceCount = maxLength - val.length;
+        process.stdout.write(`|${' '.repeat(spaceCount)}${val}`);
     })
     process.stdout.write('|\n');
 }
 
 function printLine(count, maxLength) {
-    let line = `+${'-'.repeat(maxLength)}`;
-    line = `${line.repeat(count)}+\n`;
-    process.stdout.write(line);
+    let cell = `+${'-'.repeat(maxLength)}`;
+    process.stdout.write(`${cell.repeat(count)}+\n`);
 }
